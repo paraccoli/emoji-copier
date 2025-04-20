@@ -5,7 +5,6 @@
 [![バージョン](https://img.shields.io/badge/バージョン-1.0.0-orange)](https://github.com/paraccoli/emoji-copier/releases)
 [![ライセンス: MIT](https://img.shields.io/badge/ライセンス-MIT-green)](LICENSE)
 
-![emoji-copier スクリーンショット](screenshots/main.png)
 
 ## ✨ 主な機能
 
