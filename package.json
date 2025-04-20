@@ -1,0 +1,130 @@
+{
+  "name": "emoji-copier",
+  "version": "1.0.0",
+  "description": "絵文字を素早く検索・コピーできるデスクトップアプリ",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron-forge start",
+    "dev": "concurrently --kill-others \"npm run dev:vite\" \"node scripts/start-electron.js\"",
+    "dev:vite": "vite --config vite.config.ts",
+    "dev:electron": "cross-env NODE_ENV=development electron .",
+    "dev:direct": "npm run build:vite && cross-env NODE_ENV=development electron .",
+    "build": "npm run build:vite && npm run build:electron",
+    "build:vite": "vite build --config vite.config.ts",
+    "build:electron": "tsc -p tsconfig.electron.json",
+    "seed": "python scripts/seed_db.py",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "test": "jest",
+    "package": "npm run build:vite && electron-forge package",
+    "make": "npm run build && electron-forge make",
+    "rebuild": "electron-rebuild -f",
+    "postinstall": "npm run rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paraccoli/emoji-copier.git"
+  },
+  "keywords": [
+    "emoji",
+    "clipboard",
+    "electron",
+    "react",
+    "typescript",
+    "desktop",
+    "utility"
+  ],
+  "author": "paraccoli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paraccoli/emoji-copier/issues"
+  },
+  "homepage": "https://github.com/paraccoli/emoji-copier#readme",
+  "dependencies": {
+    "better-sqlite3": "^8.5.0",
+    "electron-log": "^4.4.8",
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@electron-forge/cli": "^6.4.1",
+    "@electron-forge/maker-deb": "^6.4.1",
+    "@electron-forge/maker-rpm": "^6.4.1",
+    "@electron-forge/maker-squirrel": "^6.4.1",
+    "@electron-forge/maker-zip": "^6.4.1",
+    "@types/better-sqlite3": "^7.6.4",
+    "@types/node": "^20.4.8",
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "@vitejs/plugin-react": "^4.0.4",
+    "autoprefixer": "^10.4.14",
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "^25.3.2",
+    "electron-rebuild": "^3.2.9",
+    "electron-reloader": "^1.2.3",
+    "eslint": "^8.46.0",
+    "eslint-plugin-react": "^7.33.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.6.2",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vite-plugin-electron": "^0.12.0",
+    "vite-tsconfig-paths": "^4.2.0",
+    "wait-on": "^8.0.3"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "name": "emoji-copier",
+        "executableName": "emoji-copier",
+        "icon": "./src/renderer/src/assets/icon",
+        "extraResource": [
+          "./data"
+        ]
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "emoji-copier"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin",
+            "linux"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "options": {
+              "maintainer": "paraccoli",
+              "homepage": "https://github.com/paraccoli/emoji-copier"
+            }
+          }
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {
+            "options": {
+              "maintainer": "paraccoli",
+              "homepage": "https://github.com/paraccoli/emoji-copier"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

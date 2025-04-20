@@ -1,0 +1,17 @@
+# Python依存関係
+
+# クリップボード操作
+pyperclip==1.8.2
+pywin32==306; platform_system == "Windows"
+
+# データ処理
+tqdm==4.65.0
+emoji==2.8.0
+
+# SQLite操作
+sqlite3==0.0.1; platform_system != "Windows" and platform_system != "Darwin"
+
+# 開発ツール
+pytest==7.4.0
+black==23.7.0
+flake8==6.1.0

@@ -1,0 +1,133 @@
+/**
+ * 汎用スタイルユーティリティ
+ */
+
+/* フレックスセンタリング */
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-center-col {
+  @apply flex flex-col items-center justify-center;
+}
+
+.flex-between {
+  @apply flex items-center justify-between;
+}
+
+/* スクロール制御 */
+.scroll-y {
+  @apply overflow-y-auto overflow-x-hidden;
+}
+
+.scroll-x {
+  @apply overflow-x-auto overflow-y-hidden;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  @apply hidden;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* テキスト省略 */
+.text-ellipsis {
+  @apply overflow-hidden whitespace-nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-ellipsis-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-ellipsis-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ボーダー角丸 */
+.rounded-custom {
+  @apply rounded-tl-lg rounded-tr-md rounded-bl-md rounded-br-lg;
+}
+
+/* グラデーションテキスト */
+.text-gradient {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500;
+}
+
+/* マウスイベント制御 */
+.pointer-none {
+  pointer-events: none;
+}
+
+.pointer-all {
+  pointer-events: all;
+}
+
+/* アスペクト比の維持 */
+.aspect-square {
+  aspect-ratio: 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+/* ガラスモーフィズム効果 */
+.glassmorphism {
+  @apply bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* グラデーションボーダー */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* 印刷時に非表示にする要素 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* 印刷時のみ表示する要素 */
+.print-only {
+  @apply hidden;
+}
+
+@media print {
+  .print-only {
+    display: block !important;
+  }
+}

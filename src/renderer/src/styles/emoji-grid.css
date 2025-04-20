@@ -1,0 +1,135 @@
+/**
+ * 絵文字グリッド専用のスタイル
+ */
+
+/* 絵文字グリッドコンテナ */
+.emoji-grid {
+  @apply grid gap-3 p-4;
+  grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+}
+
+/* 絵文字アイテム */
+.emoji-item {
+  @apply relative flex flex-col items-center justify-between h-full;
+}
+
+/* 絵文字シンボル */
+.emoji-symbol {
+  @apply text-4xl my-2 leading-none;
+  transition: transform 0.2s ease;
+}
+
+.emoji-item:hover .emoji-symbol {
+  transform: scale(1.1);
+}
+
+/* ズーム表示のアニメーション */
+.emoji-zoom {
+  animation: zoom-in 0.2s ease-out;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -90%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+}
+
+/* コピー成功アニメーション */
+.copy-animation {
+  animation: copy-pulse 0.6s ease-out;
+}
+
+@keyframes copy-pulse {
+  0% {
+    background-color: rgba(34, 197, 94, 0.1);
+  }
+  50% {
+    background-color: rgba(34, 197, 94, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* レスポンシブグリッド設定 */
+/* 小さいモバイル画面 */
+@media (max-width: 400px) {
+  .emoji-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .emoji-symbol {
+    font-size: 1.75rem;
+  }
+  
+  .emoji-name {
+    font-size: 0.7rem;
+  }
+}
+
+/* 通常のモバイル画面 */
+@media (min-width: 401px) and (max-width: 640px) {
+  .emoji-grid {
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .emoji-symbol {
+    font-size: 2rem;
+  }
+}
+
+/* タブレット */
+@media (min-width: 641px) and (max-width: 768px) {
+  .emoji-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+}
+
+/* 小さいデスクトップ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .emoji-grid {
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+  }
+}
+
+/* 通常デスクトップ */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .emoji-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  }
+  
+  .emoji-symbol {
+    font-size: 2.25rem;
+  }
+}
+
+/* 大きいデスクトップ */
+@media (min-width: 1281px) {
+  .emoji-grid {
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+    gap: 1.25rem;
+  }
+  
+  .emoji-symbol {
+    font-size: 2.5rem;
+  }
+}
+
+/* タッチデバイス向け最適化 */
+@media (hover: none) {
+  .emoji-item:active {
+    @apply bg-gray-100 dark:bg-gray-700;
+  }
+  
+  .emoji-zoom {
+    display: none;
+  }
+}

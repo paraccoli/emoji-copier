@@ -1,0 +1,80 @@
+src\renderer\bridge.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' http://localhost:* ws://localhost:*;">
+  <title>Emoji Copier - ローディング</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .status {
+      margin-top: 10px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader"></div>
+  <div>Emoji Copier を起動しています...</div>
+  <div class="status" id="status">Vite サーバーに接続中...</div>
+  
+  <script>
+    // Vite開発サーバーに接続
+    let attempts = 0;
+    const maxAttempts = 20;
+    const statusElement = document.getElementById('status');
+
+    async function checkViteServer() {
+      attempts++;
+      try {
+        statusElement.textContent = `Vite サーバーに接続中...(${attempts}/${maxAttempts})`;
+        const response = await fetch('http://localhost:5173');
+        if (response.ok) {
+          statusElement.textContent = 'Vite サーバーに接続しました。アプリを読み込んでいます...';
+          window.location.href = 'http://localhost:5173';
+        } else {
+          if (attempts < maxAttempts) {
+            statusElement.textContent = `Vite サーバーからエラー応答があります。再試行中... (${attempts}/${maxAttempts})`;
+            setTimeout(checkViteServer, 500);
+          } else {
+            statusElement.textContent = 'Vite サーバーへの接続に失敗しました。';
+          }
+        }
+      } catch (err) {
+        if (attempts < maxAttempts) {
+          statusElement.textContent = `Vite サーバーが応答していません。再試行中... (${attempts}/${maxAttempts})`;
+          setTimeout(checkViteServer, 500);
+        } else {
+          statusElement.textContent = 'Vite サーバーへの接続がタイムアウトしました。';
+        }
+      }
+    }
+
+    // 接続開始
+    checkViteServer();
+  </script>
+</body>
+</html>
