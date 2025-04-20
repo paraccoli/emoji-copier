@@ -22,19 +22,6 @@
 1. [Releases](https://github.com/paraccoli/emoji-copier/releases) からインストーラー (`emoji-copier-setup.exe`) をダウンロード
 2. ダウンロードしたファイルを実行し、画面の指示に従ってインストール
 
-### macOS
-
-1. [Releases](https://github.com/paraccoli/emoji-copier/releases) から `.dmg` ファイルをダウンロード
-2. `.dmg` ファイルをマウントし、アプリケーションをドラッグ＆ドロップでインストール
-
-### Linux
-
-1. [Releases](https://github.com/paraccoli/emoji-copier/releases) から `.AppImage` または `.deb`/`.rpm` パッケージをダウンロード
-2. パッケージに応じてインストール
-   - `.AppImage`: 実行権限を付与して直接実行
-   - `.deb`: `sudo dpkg -i emoji-copier_1.0.0_amd64.deb`
-   - `.rpm`: `sudo rpm -i emoji-copier-1.0.0.x86_64.rpm`
-
 ## 🚀 使い方
 
 1. アプリケーションを起動
