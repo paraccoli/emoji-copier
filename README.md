@@ -19,7 +19,7 @@
 
 ### Windows
 
-1. [Releases](https://github.com/paraccoli/emoji-copier/releases) からインストーラー (`emoji-copier-setup.exe`) をダウンロード
+1. [Releases](https://github.com/paraccoli/emoji-copier/releases) のZipファイル(`Emoji-Copier_v1.0.0`)をダウンロード
 2. ダウンロードしたファイルを実行し、画面の指示に従ってインストール
 
 ## 🚀 使い方
